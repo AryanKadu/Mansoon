@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Product = require('./models/product');
 const Category = require('./models/category');
 
-const dbUrl = 'mongodb+srv://user2:test2@cluster0.ri9f8dp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const dbUrl = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@${process.env.MONGO_HOST}/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
 
 mongoose.connect(dbUrl)
   .then(async () => {
@@ -16,6 +16,6 @@ mongoose.connect(dbUrl)
 
     console.log('Sample category inserted');
     mongoose.disconnect();
-}).catch(err => {
+  }).catch(err => {
     console.log('DB connection error:', err);
-});
+  });
