@@ -41,7 +41,7 @@ router.get('/login', (req, res) => {
 router.post(
   '/login',
   passport.authenticate('local', {
-    failureRedirect: http://localhost:5173/login',
+    failureRedirect: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/login`,
   }),
   (req, res) => {
     res.cookie('username', req.body.username, { maxAge: 900000, httpOnly: true });
